@@ -62,8 +62,6 @@
     <requirement
         name="org.eclipse.m2e.logback.feature.feature.group"/>
     <requirement
-        name="org.eclipse.m2e.sdk.feature.feature.group"/>
-    <requirement
         name="org.eclipse.recommenders.rcp.feature.feature.group"/>
     <requirement
         name="org.eclipse.recommenders.snipmatch.rcp.feature.feature.group"/>
