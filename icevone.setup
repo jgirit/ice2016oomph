@@ -3,10 +3,11 @@
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:git="http://www.eclipse.org/oomph/setup/git/1.0"
     xmlns:jdt="http://www.eclipse.org/oomph/setup/jdt/1.0"
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
     xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
-    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore"
     name="ice.vOne"
     label="ICE V1">
   <setupTask
@@ -17,6 +18,24 @@
         name="eclipse.target.platform"
         defaultValue="Neon"
         storageURI="scope://Workspace"/>
+    <setupTask
+        xsi:type="setup:VariableTask"
+        name="git.user.id"
+        label="Gitlab ID">
+      <description>The id of your Gitlab account</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:VariableTask"
+        name="git.author.name"
+        label="Eclipse author name for Git/Gerrit">
+      <description>The author name used for Git/Gerrit commits</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:VariableTask"
+        name="git.author.email"
+        label="Eclipse author email for Git/Gerrit">
+      <description>The email address associated with Git/Gerrit commits</description>
+    </setupTask>
   </setupTask>
   <setupTask
       xsi:type="jdt:JRETask"
@@ -121,6 +140,12 @@
       xsi:type="setup:PreferenceTask"
       key="/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.typefilter.enabled"
       value="java.awt.*;"/>
+  <setupTask
+      xsi:type="git:GitCloneTask"
+      id="icev1.git.clone"
+      remoteURI="https://github.com/${git.user.id}/icevone.git">
+    <description>${scope.project.label}</description>
+  </setupTask>
   <stream name="master"
       label="Master"/>
   <logicalProjectContainer
