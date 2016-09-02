@@ -20,9 +20,17 @@
         storageURI="scope://Workspace"/>
     <setupTask
         xsi:type="setup:VariableTask"
-        name="github.username"
-        label="Github username">
-      <description>Your Github username</description>
+        name="github.name"
+        label="Github Username">
+      <description>The user ID of the Github account</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:VariableTask"
+        name="github.user.id"
+        value="${github.name}"
+        defaultValue="${github.name}"
+        label="Github user ID">
+      <description>The user ID of the Github account</description>
     </setupTask>
   </setupTask>
   <setupTask
@@ -75,7 +83,8 @@
   <setupTask
       xsi:type="git:GitCloneTask"
       id="git.clone.icevone"
-      remoteURI="${github.username}/icevone">
+      remoteURI="${github.name}/icevone"
+      pushURI="">
     <annotation
         source="http://www.eclipse.org/oomph/setup/InducedChoices">
       <detail
