@@ -6,8 +6,7 @@
     xmlns:jdt="http://www.eclipse.org/oomph/setup/jdt/1.0"
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
     xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
-    xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0"
-    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore"
     name="cool.stuff"
     label="Cool Stuff">
   <setupTask
@@ -65,40 +64,6 @@
     <repository
         url="http://download.eclipse.org/eclipse/updates/4.6"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
-  </setupTask>
-  <setupTask
-      xsi:type="setup.targlets:TargletTask">
-    <targlet
-        name="${scope.project.label}"
-        activeRepositoryList="${eclipse.target.platform}">
-      <requirement
-          name="org.eclipse.sdk.feature.group"/>
-      <requirement
-          name="epp.package.rcp"/>
-      <requirement
-          name="org.eclipse.rcp.feature.group"/>
-      <requirement
-          name="org.eclipse.jdt.feature.group"/>
-      <requirement
-          name="org.eclipse.pde.feature.group"/>
-      <requirement
-          name="org.eclipse.oomph.setup.sdk.feature.group"/>
-      <requirement
-          name="org.eclipse.pde.feature.group"/>
-      <requirement
-          name="org.eclipse.egit.feature.group"/>
-      <repositoryList
-          name="Neon">
-        <repository
-            url="http://download.eclipse.org/technology/epp/packages/neon/"/>
-        <repository
-            url="http://download.eclipse.org/releases/neon/"/>
-        <repository
-            url="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository/"/>
-        <repository
-            url="http://download.eclipse.org/eclipse/updates/4.6"/>
-      </repositoryList>
-    </targlet>
   </setupTask>
   <stream name="master"
       label="Master"/>

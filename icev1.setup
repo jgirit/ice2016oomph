@@ -7,8 +7,8 @@
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
     xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
     xsi:schemaLocation="http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore"
-    name="ice.v1"
-    label="ICE v1">
+    name="cool.stuff"
+    label="Cool Stuff">
   <setupTask
       xsi:type="setup:CompoundTask"
       name="Global Variables">
@@ -21,10 +21,16 @@
   <setupTask
       xsi:type="jdt:JRETask"
       version="JavaSE-1.8"
-      location="${jre.location-1.8}"/>
+      location="${jre.location-1.8}">
+    <description>Define the JRE needed to compile and run the Java projects of ${scope.project.label}</description>
+  </setupTask>
   <setupTask
       xsi:type="setup:EclipseIniTask"
-      option="-Xmx2048m"/>
+      option="-Xmx"
+      value="2048m"
+      vm="true">
+    <description>Set the heap space needed to work with the projects of ${scope.project.label}</description>
+  </setupTask>
   <setupTask
       xsi:type="setup:ResourceCreationTask"
       excludedTriggers="STARTUP MANUAL"
@@ -59,62 +65,10 @@
         url="http://download.eclipse.org/eclipse/updates/4.6"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
-  <setupTask
-      xsi:type="setup:CompoundTask"
-      name="JDT Setup">
-    <setupTask
-        xsi:type="setup:PreferenceTask"
-        key="/instance/org.eclipse.jdt.ui/editor_save_participant_org.eclipse.jdt.ui.postsavelistener.cleanup"
-        value="true"/>
-    <setupTask
-        xsi:type="setup:PreferenceTask"
-        key="/instance/org.eclipse.jdt.ui/sp_cleanup.add_missing_annotations"
-        value="true"/>
-    <setupTask
-        xsi:type="setup:PreferenceTask"
-        key="/instance/org.eclipse.jdt.ui/sp_cleanup.add_missing_deprecated_annotations"
-        value="true"/>
-    <setupTask
-        xsi:type="setup:PreferenceTask"
-        key="/instance/org.eclipse.jdt.ui/sp_cleanup.add_missing_override_annotations"
-        value="true"/>
-    <setupTask
-        xsi:type="setup:PreferenceTask"
-        key="/instance/org.eclipse.jdt.ui/sp_cleanup.add_missing_override_annotations_interface_methods"
-        value="true"/>
-    <setupTask
-        xsi:type="setup:PreferenceTask"
-        key="/instance/org.eclipse.jdt.ui/sp_cleanup.format_source_code"
-        value="true"/>
-    <setupTask
-        xsi:type="setup:PreferenceTask"
-        key="/instance/org.eclipse.jdt.ui/sp_cleanup.format_source_code_changes_only"
-        value="false"/>
-    <setupTask
-        xsi:type="setup:PreferenceTask"
-        key="/instance/org.eclipse.jdt.ui/sp_cleanup.on_save_use_additional_actions"
-        value="true"/>
-    <setupTask
-        xsi:type="setup:PreferenceTask"
-        key="/instance/org.eclipse.jdt.ui/sp_cleanup.organize_imports"
-        value="true"/>
-    <setupTask
-        xsi:type="setup:PreferenceTask"
-        key="/instance/org.eclipse.jdt.ui/sp_cleanup.remove_unnecessary_casts"
-        value="true"/>
-    <setupTask
-        xsi:type="setup:PreferenceTask"
-        key="/instance/org.eclipse.jdt.ui/content_assist_insert_completion"
-        value="false"/>
-    <setupTask
-        xsi:type="setup:PreferenceTask"
-        key="/instance/org.eclipse.jdt.ui/typefilter"
-        value="java.awt.*;"/>
-  </setupTask>
   <stream name="master"
-      label="master"/>
+      label="Master"/>
   <logicalProjectContainer
-      xsi:type="setup:Project"
-      href="index:/org.eclipse.setup#//@projectCatalogs[name='com.github']/@projects[name='user.project']"/>
-  <description>ICE v1 provides cool stuff.</description>
+      xsi:type="setup:ProjectCatalog"
+      href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
+  <description>Cool Stuff provides cool stuff.</description>
 </setup:Project>
