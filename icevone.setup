@@ -8,8 +8,8 @@
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
     xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
     xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore"
-    name="ice.vOne"
-    label="ICE V1">
+    name="ice.vone"
+    label="ICEV1">
   <setupTask
       xsi:type="setup:CompoundTask"
       name="Global Variables">
@@ -20,21 +20,9 @@
         storageURI="scope://Workspace"/>
     <setupTask
         xsi:type="setup:VariableTask"
-        name="git.user.id"
-        label="Gitlab ID">
-      <description>The id of your Gitlab account</description>
-    </setupTask>
-    <setupTask
-        xsi:type="setup:VariableTask"
-        name="git.author.name"
-        label="Eclipse author name for Git/Gerrit">
-      <description>The author name used for Git/Gerrit commits</description>
-    </setupTask>
-    <setupTask
-        xsi:type="setup:VariableTask"
-        name="git.author.email"
-        label="Eclipse author email for Git/Gerrit">
-      <description>The email address associated with Git/Gerrit commits</description>
+        name="github.username"
+        label="Github username">
+      <description>Your Github username</description>
     </setupTask>
   </setupTask>
   <setupTask
@@ -83,6 +71,27 @@
     <repository
         url="http://download.eclipse.org/eclipse/updates/4.6"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
+  </setupTask>
+  <setupTask
+      xsi:type="git:GitCloneTask"
+      id="git.clone.icevone"
+      remoteURI="${github.username}/icevone">
+    <annotation
+        source="http://www.eclipse.org/oomph/setup/InducedChoices">
+      <detail
+          key="inherit">
+        <value>github.remoteURIs</value>
+      </detail>
+      <detail
+          key="label">
+        <value>${scope.project.label} Github repository</value>
+      </detail>
+      <detail
+          key="target">
+        <value>remoteURI</value>
+      </detail>
+    </annotation>
+    <description>${scope.project.label}</description>
   </setupTask>
   <setupTask
       xsi:type="setup:PreferenceTask"
@@ -140,12 +149,6 @@
       xsi:type="setup:PreferenceTask"
       key="/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.typefilter.enabled"
       value="java.awt.*;"/>
-  <setupTask
-      xsi:type="git:GitCloneTask"
-      id="icev1.git.clone"
-      remoteURI="https://github.com/${git.user.id}/icevone.git">
-    <description>${scope.project.label}</description>
-  </setupTask>
   <stream name="master"
       label="Master"/>
   <logicalProjectContainer
