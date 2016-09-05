@@ -90,18 +90,15 @@
   <setupTask
       xsi:type="git:GitCloneTask"
       id="icevoomph.git.clone"
-      location="${installation.location|canonical}/git/iceoomph"
       remoteURI="https://github.com/jgirit/ice2016oomph.git"
-      pushURI="">
-    <description>Description</description>
-  </setupTask>
+      pushURI=""/>
   <setupTask
       xsi:type="projects:ProjectsImportTask">
     <sourceLocator
         rootFolder="${icevone.git.clone.location}"
         locateNestedProjects="true"/>
     <sourceLocator
-        rootFolder="${icevoomph.git.clone.location}"
+        rootFolder="${icevoomph.git.clone}"
         locateNestedProjects="true"/>
   </setupTask>
   <setupTask
